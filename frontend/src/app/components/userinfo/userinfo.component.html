@@ -1,0 +1,76 @@
+<div class="cardy"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-lg-7 col-md-10 ">
+            <div class="card">
+
+                <img class="image" src="{{userFG.value.user_picture_location}}">
+
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div class="p-5">
+
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4">{{username}}</h4>
+                            </div>
+                            <div [formGroup]="userFG">
+                                <mat-slide-toggle formControlName="bot" id="InputBot" name="Bot">Modo BOT</mat-slide-toggle>
+                            </div>
+                            <form class="user" [formGroup]="userFG">
+
+                                <!--div class="form-group"-->
+                                <mat-form-field class="form-user">
+                                    <mat-label>Nombre Completo</mat-label>
+                                    <input matInput formControlName="full_name" type="text" id="InputName" placeholder="Nombre Completo..." name="name">
+                                    <mat-error *ngIf="full_nameFC.hasError('required')">
+                                        El nombre es <strong>Obligatorio</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <!--div class="form-group"-->
+                                <mat-form-field class="form-user">
+                                    <mat-label>Usuario</mat-label>
+                                    <input [readonly]="true" matInput formControlName="username" type="text" id="InputUser" placeholder="Usuario..." name="user">
+                                    <mat-error *ngIf="usernameFC.hasError('required')">
+                                        Usuario es <strong>Obligatorio</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <!--/div-->
+                                <!--div class="form-group"-->
+                                <mat-form-field class="form-user">
+                                    <mat-label>Contraseña Actual</mat-label>
+                                    <input matInput formControlName="user_password_actual" type="password" id="InputPasswordActual" placeholder="Contraseña Actual" name="passwordActual">
+                                    <mat-error *ngIf="user_password_actualFC.hasError('required')">
+                                        Contraseña es <strong>Obligatoria</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-user">
+                                    <mat-label>Nueva Contraseña</mat-label>
+                                    <input matInput formControlName="user_password" type="password" id="InputPassword" placeholder="Nueva Contraseña" name="password">
+                                    <mat-error *ngIf="user_passwordFC.hasError('required')">
+                                        Contraseña es <strong>Obligatoria</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <!--/div-->
+                                
+                                <ngx-dropzone class="mt-4" [multiple]="false" (change)="onSelect($event)">
+                                    <ngx-dropzone-label>Arrastra la Imagen o has Click!</ngx-dropzone-label>
+                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [removable]="true" (removed)="onRemove(f)" *ngFor="let f of files" [file]="f">
+                                        <!--ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label-->
+                                    </ngx-dropzone-image-preview>
+                                </ngx-dropzone>
+                                <button class="btn btn-warning text-white mt-4" (click)="updateImage()" style="border-radius: 10rem;">Subir Foto</button>
+
+                                <button (click)="updateInfo()" class="btn btn-primary btn-block text-white btn-user form-user form-user-btn" type="submit">Guardar</button>
+                                <hr>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

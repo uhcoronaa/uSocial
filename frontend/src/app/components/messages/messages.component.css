@@ -1,0 +1,11 @@
+.messages-box, .chat-box {
+    
+    overflow-y: scroll;
+}
+.chat-box {
+    height: 510px;
+}
+
+.messages-box {
+    height: 564px;
+}

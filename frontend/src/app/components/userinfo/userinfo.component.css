@@ -1,0 +1,51 @@
+.background {
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.image {
+    position: absolute;
+    top: -150px;
+    left: 35%;
+    margin-left: -30px;
+    width: 250px !important;
+    height: 220px;
+    border-radius: 50%;
+}
+
+.cardy {
+    width: 100%;
+    height: 200px;
+}
+
+.o-hidden {
+    overflow: hidden!important;
+}
+
+.h4, h4 {
+    font-size: 1.5rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}  
+
+.form-user {
+    border-radius: 10rem;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.form-user-btn {
+    margin-top: 7px;
+}

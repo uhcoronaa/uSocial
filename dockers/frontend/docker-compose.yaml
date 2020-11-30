@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  appp:
+    container_name: frontend_container
+    build: .
+    image: frontend_image
+    ports: 
+      - 80:80

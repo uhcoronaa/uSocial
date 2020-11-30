@@ -1,0 +1,104 @@
+<div class="row w-100">
+
+  <div class="col-2 d-none d-lg-block d-xl-block pl-5 mt-5">
+    <div class="list-group position-fixed scroll" style="width: 13%;">
+      <button (click)="filterall()" class="list-group-item d-flex justify-content-between align-items-center">
+        All
+      </button>
+      <button *ngFor="let filter of filters" (click)="changefilterselected(filter)" class="list-group-item d-flex justify-content-between align-items-center">
+        {{filter.name}}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 pl-5">
+    <div class="blog-slider__item blog-slider mt-5 text-center">
+      <div class="card-body">
+        <h1 class="card-title">
+          Crea una publicacion
+        </h1>
+        <hr>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn input-button" data-toggle="modal" data-target="#exampleModalCenter">
+          ¿Quieres compartir algo a tus amigos?
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h1 class="card-title font-weight-bold" id="exampleModalLongTitle">Crear publicación</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group mb-3">
+                  <textarea [(ngModel)]="messagePub" name="MessagePub" style="resize: none;" rows="6" type="text" class="form-control" placeholder="¿Que quieres compartir?" aria-label="" aria-describedby="basic-addon2"></textarea>
+                </div>
+                <!--div class="md-form">
+                  <h1 class="card-title" for="form10">¿Que quieres compartir?</h1>
+                  <textarea id="form10" class="md-textarea form-control" rows="3"></textarea>
+                </div-->
+              </div>
+              <div class="dropdown-divider"></div>
+              <strong>
+                <h3 class="font-weight-bold">Comparte una fotografia!</h3>
+              </strong>
+              <ngx-dropzone class="m-4" [multiple]="false" (change)="onSelect($event)">
+                <ngx-dropzone-label>Arrastra la Imagen o has Click!</ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [removable]="true" (removed)="onRemove(f)" *ngFor="let f of files" [file]="f">
+                  <!--ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label-->
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="postPub()">Publicar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let post of posts2">
+      <div class="blog-slider__item blog-slider mt-5">
+        <div></div>
+        <button *ngIf="post.image!=''" (click)="openDialog(mytemplate)" class="tbutton blog-slider__img2">
+          <img class="img-fluid" src="{{post.image}}" />
+        </button>
+        <ng-template #mytemplate>
+          <button class="close" (click)="onNoClick()">X</button>
+          <img class="img-fluid" src="{{post.image}}" />
+        </ng-template>
+        <div class="blog-slider__content"><span>{{post.date | date:'medium'}}</span>
+          <div class="blog-slider__title">{{post.full_name}}</div>
+          <h2 class="card-subtitle text-secondary">@{{post.username}}</h2>
+          <div class="blog-slider__text" *ngIf="!post.old_message">{{post.message}}</div>
+          <div class="blog-slider__text font-italic" *ngIf="post.old_message">{{post.message}}</div>
+          <button *ngIf="!post.old_message" type="button" (click)="translateText(post)" class="btn btn-sm btn-outline-info mb-3">Traducir</button>
+          <button *ngIf="post.old_message" type="button" (click)="returnText(post)" class="btn btn-sm btn-outline-info mb-3">Ver Original</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 d-none d-lg-block d-xl-block mt-5">
+    <ul class="list-group position-fixed scroll" style="width: 20%;">
+      <li *ngFor="let person of peoplemayknow" class="list-group-item mb-5 border rounded">
+        <div class="row">
+          <div class="col-4 my-auto">
+            <img *ngIf="person.user_picture_location!=null" src="{{person.user_picture_location}}" width="100%" class="img-fluid" />
+            <img *ngIf="person.user_picture_location==null" src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" width="100%" class="img-fluid" />
+          </div>
+          <div class="col-8">
+            <h2>{{person.full_name}}</h2>
+            <button type="button" class="btn btn-primary btn-block" (click)="addfriend(person.id_user)">Agregar
+              amigo</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" (click)="removefromknown(person.id_user)">Quitar de la lista</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: db_container
+    build: .
+    image: db_image
+    expose:
+      - "3306"
+    ports:
+      - 3306:3306

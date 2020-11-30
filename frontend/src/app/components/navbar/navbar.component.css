@@ -1,0 +1,17 @@
+.dropdown-menu {
+  width: 100% !important;
+}
+
+.my-auto{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@media only screen and (min-width : 992px) {
+  .dropdown-menu {
+    width: 200% !important;
+  }
+  .dropdown-menu2 {
+    width: 100% !important;
+  }
+}

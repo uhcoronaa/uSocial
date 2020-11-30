@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" *ngIf="session.session" routerLink="/principal">
+    <span>
+      <img class="img-fluid pl-5" src="../../../assets/logo.png">
+    </span>
+  </a>
+  <a class="navbar-brand" *ngIf="!session.session" routerLink="/home">
+    <span>
+      <img class="img-fluid pl-5" src="../../../assets/logo.png">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    <span *ngIf="notification.leidas>0 && this.session.session" class="badge badge-primary badge-pill">{{notification.leidas}}</span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="this.session.session" class="nav-item active">
+        <a class="nav-link" routerLink="/principal">Inicio<span class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="this.session.session" class="nav-item">
+        <a class="nav-link" routerLink="/message">Chat</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <li *ngIf="!this.session.session" class="nav-item active">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!this.session.session" class="nav-item">
+        <a class="nav-link" routerLink="/signup">Register</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <div class="dropdown" *ngIf="this.session.session">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color:white;" (click)="marcarleida()">
+          Notificaciones
+          <span *ngIf="notification.leidas>0" class="badge badge-primary badge-pill">{{notification.leidas}}</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="list-group ml-2 mr-2">
+            <li *ngFor="let not of notification.notifications"
+              class="list-group-item mb-2 border rounded">
+
+              <div class="row">
+                <div class="col-3 my-auto" >
+                  <img *ngIf="not.img!=''" src="{{not.img}}" alt="user" class="img-fluid">
+                  <img *ngIf="not.img==''" src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="user" class="img-fluid">
+                </div>
+                <div class="col-9">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="text-primary" *ngIf="not.type==1">Nueva solicitud de amistad</h3>
+                    <h3 class="text-primary" *ngIf="not.type==2">Solicitud aceptada</h3>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h3>{{not.msg}}</h3>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <button type="button" *ngIf="not.type==1" class="btn btn-primary btn-sm mr-2" (click)="accept(not)">Aceptar</button>
+                    <button type="button" *ngIf="not.type==1" class="btn btn-sm btn-secondary" (click)="reject(not.id_notification)">Rechazar</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="not.type==2">
+
+              </div>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="dropdown" *ngIf="this.session.session">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color:white;">
+          Manejar Cuenta
+        </button>
+        <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" routerLink="/info">Mi Perfil</a>
+          <button class="dropdown-item" (click)="logout()">Cerrar Sesion</button>
+        </div>
+      </div>
+    </ul>
+  </div>
+</nav>

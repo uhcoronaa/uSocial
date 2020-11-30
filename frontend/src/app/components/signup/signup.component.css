@@ -1,0 +1,88 @@
+.register-photo {
+  padding: 80px 0;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.mat-form-field{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.register-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background-size: cover;
+  align-content: center;
+}
+
+.register-photo .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.register-photo form {
+  display: table-cell;
+  width: 400px;
+  padding: 40px 60px;
+  color: #505e6c;
+}
+
+.dropzone {
+  width: 40%;
+  margin-left: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .register-photo form {
+    padding: 40px;
+  }
+  .dropzone {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+
+
+.register-photo form h2 {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.register-photo form .form-control {
+  background: #f7f9fc;
+  border: none;
+  width: 100%;
+}
+
+.register-photo form .form-check {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.register-photo form .btn-primary {
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.register-photo form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.register-photo form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}

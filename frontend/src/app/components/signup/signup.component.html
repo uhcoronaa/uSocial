@@ -1,0 +1,52 @@
+<div class="register-photo">
+  <div class="form-container">
+    <form novalidate [formGroup]="singupform">
+      <h2 class="text-center">Registro</h2>
+      <mat-form-field>
+        <input matInput type="text" name="usuario" placeholder="Username" formControlName="username" />
+        <mat-error>
+          <mat-error *ngIf="formErrors.username">
+            {{formErrors.username}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="name" placeholder="Full Name" formControlName="full_name" />
+        <mat-error>
+          <mat-error *ngIf="formErrors.full_name">
+            {{formErrors.full_name}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" name="password" placeholder="Password" formControlName="user_password" />
+        <mat-error *ngIf="formErrors.user_password">
+          {{formErrors.user_password}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" name="password-repeat" placeholder="Repetir Password"
+          formControlName="password1" />
+        <mat-error *ngIf="formErrors.password1">
+          {{formErrors.password1}}
+        </mat-error>
+      </mat-form-field>
+
+      <ngx-dropzone [multiple]="false" (change)="onSelect($event)" class="dropzone">
+        <ngx-dropzone-label>Seleccionar imagen de perfil</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [removable]="true"
+          (removed)="onRemove(f)" [file]="f">
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit" (click)="signup()" [disabled]="singupform.invalid">
+          Sign Up
+        </button>
+      </div>
+      <a class="already" href="#">
+        ¿Ya tienes cuenta? Inicia sesion aqui
+      </a>
+    </form>
+  </div>
+</div>
