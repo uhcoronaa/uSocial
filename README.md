@@ -33,7 +33,7 @@ This is a really useful feature in this social network, here depending on the ki
 ### Profile
 Here users will be able to update their personal information, and in case of wanting to create a bot in this section the user will be able to change the type of user from normal user to bot
 
-<img src="images/Screenshot_2020-11-29 Frontend(2)">
+<img src="images/Screenshot_2020-11-29 Frontend(2).png">
 
 ### Languages, Frameworks and Used Technologies
 - NodeJS
